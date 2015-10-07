@@ -45,7 +45,7 @@
     };
     // the main scoring algorithm - calculates score based on entered password text
     var getScore = function (text, rules) {
-        if (isEmpty(text)) {
+        if (isEmpty(text) || text.length < rules.minLength) {
             return 0;
         }
         var nAlphaUC = 0, nAlphaLC = 0, nNumber = 0, nSymbol = 0, nMidChar = 0, nUnqChar = 0, nRepChar = 0,
@@ -216,6 +216,7 @@
             self[key] = value;
         });
         self.$element = $(element);
+        self.rules = $.extend({}, $.fn.strength.defaults.rules, self.rules);
         self.verdicts = self.generateVerdicts();
         self.setDefault('toggleClass', 'kv-toggle');
         self.setDefault('meterClass', 'kv-meter');
@@ -404,6 +405,7 @@
             5: 'label label-success'
         },
         rules: {
+            minLength: 8,
             midChar: 2,
             consecAlphaUC: 2,
             consecAlphaLC: 2,
