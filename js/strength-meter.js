@@ -217,6 +217,7 @@
         });
         self.rules = $.extend({}, $.fn.strength.defaults.rules, self.rules);
         self.$element = $(element);
+        self.rules = $.extend({}, $.fn.strength.defaults.rules, self.rules);
         self.verdicts = self.generateVerdicts();
         self.setDefault('toggleClass', 'kv-toggle');
         self.setDefault('meterClass', 'kv-meter');
